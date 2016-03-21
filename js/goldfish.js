@@ -44,39 +44,25 @@ Goldfish.prototype.display =function(){
 
 // Goldfish logic.  Makes each goldfish keep track of it's own individual logic
 Goldfish.prototype.init = function(){
+
+//Allows us to take the current theta from the fish, to calculate the movements of the fish
 var workingTheta = this.theta;
+
+//Allows us to continue working with this particular object within the setInterval anonymous callback
 var obj = this;
+
+// creates a timer that updates the fish movements based on the speed of the fish.
 obj.timerId = window.setInterval(function(){
-	workingTheta=(workingTheta+1)%360;
-	obj.theta= (workingTheta-60)%360;
+	//Updates the working theta so that the fish will orbit the target
+	//Updates obj.theta so that the fish appears to be orbiting the target coordinates
+	workingTheta = (workingTheta + 1) % 360;
+	obj.theta = (workingTheta - 60 ) % 360;
+
+	//Converts angle from degrees to radians to determine where the fish should be placed
 	obj.x = obj.targetX + (Math.cos(workingTheta*Math.PI/180))*obj.distanceToTarget;
 	obj.y = obj.targetY + (Math.sin(workingTheta*Math.PI/180))*obj.distanceToTarget;
+
+//fish speed determines how quickly the interval is called
 },(100/this.speed));	
 };
 
-var $canvas = $('#myCanvas');
-// $canvas.drawArc({
-//   fillStyle: 'black',
-//   x: 10, y: 10,
-//   radius: 50
-// });
-
-
-var b ={
-  fillStyle: 'black',
-  x: 200, y: 200,
-  radius: 50
-};
-
-
-
-$canvas.drawArc(b);
-
-// Required arguments are canvas, x, y, angle, targetX, targetY, and speed.
-
-var sawa = new Goldfish($canvas, 250,250, 0, 300,300,5 );
-
-var timer2Id = window.setInterval(function(){
-	$canvas.clearCanvas();
-	sawa.display();
-},42);
