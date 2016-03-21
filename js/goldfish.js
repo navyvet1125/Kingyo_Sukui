@@ -9,9 +9,8 @@ var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed){
 	this.targetY = targetY;
 	this.speed = speed;
 	this.theta = theta;
-	this.radian = theta*Math.PI/180;
 	this.isNormal = true;
-	this.distanceToTarget =Math.atan2((this.x-this.targetX),(this.y-this.targetY));
+	this.distanceToTarget = Math.sqrt(Math.pow(this.x-this.targetX,2)+Math.pow(this.y-this.targetY,2));
 	this.init(); //Sarts the fish logic
 	// this.isLively = (Math.floor(Math.random()*2)===0);
 };
@@ -50,8 +49,8 @@ var obj = this;
 obj.timerId = window.setInterval(function(){
 	workingTheta=(workingTheta+1)%360;
 	obj.theta= (workingTheta-60)%360;
-	obj.x = obj.targetX + (Math.cos(workingTheta*Math.PI/180))*100;
-	obj.y = obj.targetY + (Math.sin(workingTheta*Math.PI/180))*100;
+	obj.x = obj.targetX + (Math.cos(workingTheta*Math.PI/180))*obj.distanceToTarget;
+	obj.y = obj.targetY + (Math.sin(workingTheta*Math.PI/180))*obj.distanceToTarget;
 },(100/this.speed));	
 };
 
