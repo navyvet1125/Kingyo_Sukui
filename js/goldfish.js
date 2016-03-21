@@ -10,8 +10,12 @@ var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed){
 	this.speed = speed;
 	this.theta = theta;
 	this.isNormal = true;
+	//calculate fish distance to target
 	this.distanceToTarget = Math.sqrt(Math.pow(this.x-this.targetX,2)+Math.pow(this.y-this.targetY,2));
-	this.init(); //Sarts the fish logic
+
+	//Sarts the fish logic
+	this.init(); 
+	
 	// this.isLively = (Math.floor(Math.random()*2)===0);
 };
 

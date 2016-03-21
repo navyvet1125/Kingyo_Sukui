@@ -4,16 +4,7 @@ var $canvas = $('#myCanvas');
 
 	var sawa = [];
 
-	for (var i = 0; i<10;i++){
-		var x = Math.floor(Math.random()*300)+200;
-		var y = Math.floor(Math.random()*300)+200;
-		var angle = Math.floor(Math.random()*360);
-		var targetX = Math.floor(Math.random()*200)+200;
-		var targetY = Math.floor(Math.random()*200)+200;
-		var speed = Math.floor(Math.random()*10);
-
-		sawa.push(new Goldfish($canvas,x,y,angle,300,300,speed));
-	}
+	
 
 
 	var timer2Id = window.setInterval(function(){
