@@ -16,7 +16,7 @@ $canvas.on('mousemove', function(event){
 
 $canvas.on('mousedown', function(){
 	//if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater) sawaNoPoi.startTimer();
-	if(sawaNoPoi.x < sawaNoPuuru.width)	sawaNoPoi.startTimer();
+	if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater)	sawaNoPoi.startTimer();
 });
 $canvas.on('mouseup', function(){
 	sawaNoPoi.stopTimer();
