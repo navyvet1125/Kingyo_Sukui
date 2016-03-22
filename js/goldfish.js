@@ -18,7 +18,7 @@ var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater,
 	this.distanceToPoi = 0;
 	this.poiX = 0;
 	this.poiY = 0;
-	this.index = iindex;
+	this.index = index;
 	//Sarts the fish logic
 	this.init(); 
 	
