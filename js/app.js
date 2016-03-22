@@ -5,6 +5,11 @@ var sawaNoPuuru = new Pool($canvas,700,800,12,'blue');
 //New bowls require a canvas, x, y height, width, and a radius (optional)
 var sawaNoBouru = new Bowl ($canvas,970,400,800,550,260);
 
+var sawaNoPoi = new Poi($canvas);
+$canvas.on('mousemove', function(event){sawaNoPoi.update(event);});
+//$canvas.mousemove(event, sawaNoPoi);
+// $canvas.on('mousemove', function(event){});
+
 
 var timer2Id = window.setInterval(function(){
 
@@ -12,7 +17,8 @@ var timer2Id = window.setInterval(function(){
 			sawaNoPuuru.displayPool();
 			sawaNoBouru.display();
 			sawaNoPuuru.fishArray.forEach(function(key){key.display();});
-			
+			sawaNoPoi.display();
+
 		}
 		catch(e){
 			console.log(poolObj.fishArray);
