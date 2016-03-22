@@ -9,6 +9,7 @@ var Poi = function(canvas){
 	this.isUnderWater = false;
 	this.centerHealth = 40;
 	this.outerHealth = 80;
+	this.type = 'poi';
 };
 
 Poi.prototype.update = function(event){

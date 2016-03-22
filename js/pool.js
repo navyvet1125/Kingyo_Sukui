@@ -8,6 +8,7 @@ var Pool = function(canvas, height, width, numberOfFish, color){
 	this.color = color;
 	this.fishArray = [];
 	this.canvas = canvas;
+	this.type = 'pool';
 	//Generate the pool immediately
 	this.init();
 	this.displayPool();

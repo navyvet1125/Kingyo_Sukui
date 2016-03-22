@@ -7,6 +7,7 @@ var Bowl = function(canvas, x, y, height, width, radius){
 	this.width = width;
 	this.radius = radius;
 	this.fishArray = [];
+	this.type = 'bowl';
 	//this.init();
 };
 

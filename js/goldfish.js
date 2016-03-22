@@ -1,5 +1,5 @@
-// Required arguments are canvas, x, y, angle, targetX, targetY, and speed.
-var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater){
+// Required arguments are canvas, x, y, angle, targetX, targetY, speed, if it is in water, and what container is it in.
+var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater, container){
 	this.canvas = canvas;
 	this.x =x;
 	this.y =y;
@@ -13,8 +13,8 @@ var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater)
 	// whether or not the fish is in water
 	this.isInWater = isInWater;
 	//calculate fish distance to target
-	this.distanceToTarget = Math.sqrt(Math.pow(this.x-this.targetX,2)+Math.pow(this.y-this.targetY,2));
-
+	this.distanceToTarget = this.distanceTo(this.targetX, this.targetY);
+	this.container= container;
 	//Sarts the fish logic
 	this.init(); 
 	
@@ -48,6 +48,11 @@ Goldfish.prototype.display =function(){
 };
 
 
+//Returns the distance between the fish and a coordinate pair
+Goldfish.prototype.distanceTo = function(objX,objY){
+	return Math.sqrt(Math.pow(this.x-objX,2)+Math.pow(this.y-objY,2));
+};
+
 // Goldfish logic.  Makes each goldfish keep track of it's own individual logic
 Goldfish.prototype.init = function(){
 
@@ -79,4 +84,11 @@ Goldfish.prototype.outOfWater = function (){
 	this.isInWater = false;
 };
 
-
+Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
+	this.container = container;
+	this.targetX = container.x;
+	this.targetY = container.y;
+	if(radius) this.distanceToTarget = Math.floor(Math.random()*(radius-5)+3);
+	else distanceToTarget = 0;
+	this.IsInWater = !!hasWater;
+};
