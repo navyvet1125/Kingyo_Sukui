@@ -5,8 +5,7 @@ var Bowl = function(canvas, x, y, height, width, radius){
 	this.y = y;
 	this.height = height;
 	this.width = width;
-	if(radius) this.radius= radius;
-	else if(!radius)this.radius = 260;
+	this.radius = radius;
 	this.fishArray = [];
 	this.init();
 };
@@ -19,18 +18,18 @@ Bowl.prototype.display = function() {
 this.canvas.drawRect({
 		  fillStyle: '#e0e4cc',
 		  strokeStyle:'black',
-		  x: this.width,
-		  y: this.height,
-		  width: this.radius*2,
-		  height: this.height*2,
+		  x: this.x,
+		  y: this.y,
+		  width: this.width,
+		  height: this.height,
 		  fromCenter: true
 	});
 	this.canvas.drawArc({
 	  fillStyle: '#a7dbd8',
 	  strokeStyle: 'black',
 	  strokeWidth: 5,
-	  x: this.width, 
-	  y: this.height,
+	  x: this.x, 
+	  y: this.y,
 	  radius: this.radius
 	});
 };
