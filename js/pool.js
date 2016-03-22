@@ -28,7 +28,7 @@ Pool.prototype.init =  function(){
 		var targetX = halfWidth;
 		var targetY = halfHeight;
 		var speed = Math.floor(Math.random()*10);
-		this.fishArray.push(new Goldfish(this.canvas,x,y,angle,300,300,speed, true));
+		this.fishArray.push(new Goldfish(this.canvas,x,y,angle,300,300,speed, true, this.type));
 	}
 
 };
