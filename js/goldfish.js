@@ -1,5 +1,5 @@
-// Required arguments are canvas, x, y, angle, targetX, targetY, speed, if it is in water, and what container is it in.
-var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater, container){
+// Required arguments are canvas, x, y, angle, targetX, targetY, speed, if it is in water, what container is it in, and it's number.
+var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater, container, index){
 	this.canvas = canvas;
 	this.x =x;
 	this.y =y;
@@ -18,6 +18,7 @@ var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater,
 	this.distanceToPoi = 0;
 	this.poiX = 0;
 	this.poiY = 0;
+	this.index = iindex;
 	//Sarts the fish logic
 	this.init(); 
 	
@@ -105,4 +106,4 @@ Goldfish.prototype.poiDistance = function(x, y){
 Goldfish.prototype.updatePoi = function(x,y){
 	this.poiX = x;
 	this.poiY = y;
-}
+};

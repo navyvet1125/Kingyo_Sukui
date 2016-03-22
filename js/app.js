@@ -16,10 +16,12 @@ $canvas.on('mousemove', function(event){
 
 $canvas.on('mousedown', function(){
 	//if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater) sawaNoPoi.startTimer();
-	if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater && sawaNoPoi.poiHealth > 0)	sawaNoPoi.startTimer();
+	if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken)	sawaNoPoi.startTimer();
 });
 $canvas.on('mouseup', function(){
+	if(sawaNoPoi.x < sawaNoPuuru.width && sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken) console.log(sawaNoPoi.takeCloseFish(sawaNoPuuru));
 	sawaNoPoi.stopTimer();
+
 });
 //$canvas.mousemove(event, sawaNoPoi);
 // $canvas.on('mousemove', function(event){});
@@ -35,7 +37,7 @@ var timer2Id = window.setInterval(function(){
 
 		}
 		catch(e){
-			console.log(poolObj.fishArray);
+			console.log(e);
 		}
 
 },41);
