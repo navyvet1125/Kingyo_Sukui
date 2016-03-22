@@ -27,7 +27,7 @@ Pool.prototype.init =  function(){
 		var targetX = halfWidth;
 		var targetY = halfHeight;
 		var speed = Math.floor(Math.random()*10);
-		this.fishArray.push(new Goldfish(this.canvas,x,y,angle,300,300,speed));
+		this.fishArray.push(new Goldfish(this.canvas,x,y,angle,300,300,speed, true));
 	}
 
 };
@@ -35,40 +35,14 @@ Pool.prototype.init =  function(){
 
 
 Pool.prototype.displayPool = function(){
-	var poolObj = this;
-	var timer2Id = window.setInterval(function(){
-		poolObj.canvas.drawRect({
-			  fillStyle: '#69d2e7',
-			  strokeStyle:'black',
-			  x: poolObj.height/2,
-			  y: poolObj.width/2,
-			  width: poolObj.height,
-			  height: poolObj.width,
-			  fromCenter: true
-			});
-		// console.log(poolObj.width/2);
-		// poolObj.canvas.drawRect({
-		// 	  fillStyle: '#e0e4cc',
-		// 	  x: poolObj.width,
-		// 	  y: poolObj.height,
-		// 	  width: 550,
-		// 	  height: 2000
-		// 	});
-
-
-		poolObj.canvas.drawArc({
-		  fillStyle: '#a7dbd8',
-		  strokeStyle: 'black',
-		  strokeWidth: 5,
-		  x: 950, y: 400,
-		  radius: 250
-		});
-		try {
-			poolObj.fishArray.forEach(function(key){key.display();});
-			
-		}
-		catch(e){
-			console.log(poolObj.fishArray);
-		}
-	},41);
+	this.canvas.drawRect({
+		  fillStyle: '#69d2e7',
+		  strokeStyle:'black',
+		  x: this.height/2,
+		  y: this.width/2,
+		  width: this.height,
+		  height: this.width,
+		  fromCenter: true
+	});
+	
 };

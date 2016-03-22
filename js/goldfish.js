@@ -1,5 +1,5 @@
 // Required arguments are canvas, x, y, angle, targetX, targetY, and speed.
-var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed){
+var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater){
 	this.canvas = canvas;
 	this.x =x;
 	this.y =y;
@@ -10,6 +10,8 @@ var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed){
 	this.speed = speed;
 	this.theta = theta;
 	this.isNormal = true;
+	// whether or not the fish is in water
+	this.isInWater = isInWater;
 	//calculate fish distance to target
 	this.distanceToTarget = Math.sqrt(Math.pow(this.x-this.targetX,2)+Math.pow(this.y-this.targetY,2));
 
@@ -57,16 +59,24 @@ var obj = this;
 
 // creates a timer that updates the fish movements based on the speed of the fish.
 obj.timerId = window.setInterval(function(){
-	//Updates the working theta so that the fish will orbit the target
-	//Updates obj.theta so that the fish appears to be orbiting the target coordinates
-	workingTheta = (workingTheta + 1) % 360;
-	obj.theta = (workingTheta - 60 ) % 360;
+	//If the fish is in a body of water, then it can move around.
+	if(obj.isInWater){
+		//Updates the working theta so that the fish will orbit the target
+		//Updates obj.theta so that the fish appears to be orbiting the target coordinates
+		workingTheta = (workingTheta + 1) % 360;
+		obj.theta = (workingTheta - 60 ) % 360;
 
-	//Converts angle from degrees to radians to determine where the fish should be placed
-	obj.x = obj.targetX + (Math.cos(workingTheta*Math.PI/180))*obj.distanceToTarget;
-	obj.y = obj.targetY + (Math.sin(workingTheta*Math.PI/180))*obj.distanceToTarget;
+		//Converts angle from degrees to radians to determine where the fish should be placed
+		obj.x = obj.targetX + (Math.cos(workingTheta*Math.PI/180))*obj.distanceToTarget;
+		obj.y = obj.targetY + (Math.sin(workingTheta*Math.PI/180))*obj.distanceToTarget;
+	}
 
 //fish speed determines how quickly the interval is called
 },(100/this.speed));	
 };
+
+Goldfish.prototype.outOfWater = function (){
+	this.isInWater = false;
+};
+
 
