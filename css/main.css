@@ -1,3 +1,27 @@
 canvas {
 	 cursor: none;
 }
+.screen-too-small {
+	display: none;
+}
+.canvasHolder{
+	margin: auto;
+  	position: absolute;
+  	top: 0; left: 0; bottom: 0; right: 0;
+	border: 20px outset blue;
+	width:1005px;
+	height: 600px;
+
+}
+@media screen and (max-width: 980px) {
+	.canvasHolder{
+		display:none;
+	}
+	.screen-too-small {
+		display: block;
+		margin: 0 auto;
+		width: 95%;
+		height: 95%;
+	}
+
+}

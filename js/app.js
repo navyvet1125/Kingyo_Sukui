@@ -1,9 +1,9 @@
 var $canvas = $('#gameCanvas');
 //new Pools require a length, width, a number of fish, a color, and the canvas
 
-var myPool = new Pool($canvas,700,800,16,'blue');
+var myPool = new Pool($canvas,620,600,16,'blue');
 //New bowls require a canvas, x, y height, width, and a radius (optional)
-var myBowl = new Bowl ($canvas,970,400,800,550,260);
+var myBowl = new Bowl ($canvas,800,300,600,410,200);
 
 var myPoi = new Poi($canvas);
 $canvas.on('mousemove', function(event){
