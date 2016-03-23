@@ -1,6 +1,8 @@
 $('.start-button').click(function(){
-	alert();
-	gameStart();
+	console.log('Game Start');
+	$('.start-button').toggle();
+	var gameWon = gameStart();
+	
 });
 var $canvas = $('#gameCanvas');
 
@@ -10,7 +12,7 @@ var gameStart = function (){
 
 	//new Pools require a length, width, a number of fish, a color, and the canvas
 
-	var myPool = new Pool($canvas,620,600,7,'blue');
+	var myPool = new Pool($canvas,620,600,3);
 	//New bowls require a canvas, x, y height, width, and a radius (optional)
 	var myBowl = new Bowl ($canvas,800,300,600,410,200);
 
@@ -49,20 +51,31 @@ var gameStart = function (){
 
 
 	var displayTimer = window.setInterval(function(){
-
+			if(myPoi.isBroken) {
+				stopGame();
+				console.log('You Lose!');
+				return false;
+			}
 			try {
 				myPool.displayPool();
 				myBowl.display();
-				if(!myPool.isEmpty()) myPool.fishArray.forEach(function(key){key.display();});
+				if(!myPool.isEmpty()){
+					myPool.fishArray.forEach(function(key){key.display();});
+				} else {
+					if(myBowl.getFishNum()===myPool.numberOfFish) stopGame();
+					console.log('You Win!');
+					return true;
+				}
 				myPoi.display();
-				if(myPoi.fishArray.length >0) {
+				if(!myPoi.isEmpty()) {
+					//Filter out undefined objects
 					myPoi.fishArray = myPoi.fishArray.filter(function(key){return key !== undefined;});
 					myPoi.fishArray.forEach(function(key){
 						key.display();
 						key.updatePoi(myPoi.x, myPoi.y);
 					});
 				}
-				if(!myPool.isEmpty()) {
+				if(!myBowl.isEmpty()) {
 					myBowl.fishArray.forEach(function(key){
 						key.display();
 						key.updatePoi(myPoi.x, myPoi.y);
@@ -74,12 +87,16 @@ var gameStart = function (){
 			}
 
 	},41);
-};
-
-
 
 var stopGame = function(){
-	myPoi.fishArray.forEach(function(key){
-		key.die();
-	});	
+	if(!myPool.isEmpty()) myPool.fishArray.forEach(function(key){key.die();});	
+	if(!myPoi.isEmpty()) myPoi.fishArray.forEach(function(key){key.die();});	
+	if(!myBowl.isEmpty()) myBowl.fishArray.forEach(function(key){key.die();});
+	window.clearInterval(displayTimer);
+	$('.start-button').toggle();	
 };
+
+};
+
+
+

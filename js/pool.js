@@ -1,7 +1,7 @@
-//new Pools require a canvas, height, width, a number of fish, and a color
+//new Pools require a canvas, height, width, and the number of fish
 
 
-var Pool = function(canvas, height, width, numberOfFish, color){
+var Pool = function(canvas, height, width, numberOfFish){
 	this.height = height;
 	this.width = width;
 	this.numberOfFish = numberOfFish;

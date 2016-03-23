@@ -36,3 +36,7 @@ Bowl.prototype.display = function() {
 Bowl.prototype.isEmpty = function(){
 	return this.fishArray.length === 0;
 };
+
+Bowl.prototype.getFishNum= function(){
+	return this.fishArray.length;
+};
