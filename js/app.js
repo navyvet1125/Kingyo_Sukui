@@ -16,11 +16,12 @@ $canvas.on('mousemove', function(event){
 
 $canvas.on('mousedown', function(){
 	//if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater) sawaNoPoi.startTimer();
-	if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken)	sawaNoPoi.startTimer();
+	if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken &&sawaNoPoi.fishArray.length < 1)	sawaNoPoi.startTimer();
+	if(sawaNoPoi.fishArray.length >=1) $('.timer').text('Place your fish in the bowl!')
 });
 $canvas.on('mouseup', function(){
 	if(sawaNoPoi.x < sawaNoPuuru.width && sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken) sawaNoPoi.takeCloseFish(sawaNoPuuru);
-	sawaNoPoi.stopTimer();
+	if(sawaNoPoi.isUnderWater)sawaNoPoi.stopTimer();
 
 });
 //$canvas.mousemove(event, sawaNoPoi);
