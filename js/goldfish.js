@@ -87,6 +87,10 @@ obj.timerId = window.setInterval(function(){
 		obj.x = obj.poiX;
 		obj.y = obj.poiY;
 	}
+else if(obj.container === 'bowl') {
+		// obj.x = obj.poiX;
+		// obj.y = obj.poiY;
+	}
 
 //fish speed determines how quickly the interval is called
 },(100/this.speed));	
@@ -101,10 +105,10 @@ Goldfish.prototype.inWater = function (){
 
 
 Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
-	this.container = container;
+	this.container = container.type;
 	this.targetX = container.x;
 	this.targetY = container.y;
-	if(radius) this.distanceToTarget = Math.floor(Math.random()*(radius-5)+3);
+	if(radius) this.distanceToTarget = Math.floor(Math.random()*(radius-20)+3);
 	else distanceToTarget = 0;
 	if(!hasWater) this.outOfWater();
 	else this.inWater();

@@ -62,13 +62,12 @@ $('canvas').drawLine({
 
 Poi.prototype.startTimer = function(){
 	var poiObj = this;
-	console.log(poiObj.poiHealth);
 	this.isUnderWater = true;
+	if (!poiObj.isBroken)poiObj.poiHealth--;
 	$('.timer').text('The poi is under water!');
 	this.healthTimer = window.setInterval(function(){
 		$('.timer').text('The poi is still under water!');
 		if (!poiObj.isBroken)poiObj.poiHealth--;
-		console.log(poiObj.poiHealth);
 		if (poiObj.poiHealth<=0)poiObj.breakPoi();
 	},1000);
 };
@@ -90,7 +89,7 @@ Poi.prototype.takeFish = function(previousArray, index){
 	if(this.fishArray.length<3) {
 		this.fishArray.push(previousArray.splice(index, 1)[0]);
 		try {
-			this.fishArray[this.fishArray.length-1].getNewContainer(this.container, false, this.radius);
+			this.fishArray[this.fishArray.length-1].getNewContainer(this, false, this.radius);
 			
 		}
 		 catch(e){
@@ -99,6 +98,7 @@ Poi.prototype.takeFish = function(previousArray, index){
 		// Fish weight slowly destroys the poi.
 		this.poiHealth-=2;
 	}
+	this.fishArray = this.fishArray.filter(function(key){return key !== undefined;});
 
 };
 
@@ -113,6 +113,15 @@ Poi.prototype.takeCloseFish = function(poolObj){
 		var tempIndex = key.index;
 		poiObj.takeFish(poolObj.fishArray, tempIndex);
 	});
-	// console.log(poolObj.fishArray.length);
-	// console.log(poiObj.fishArray.length);
+};
+
+Poi.prototype.dropMyFish = function (target){
+	target.fishArray.push(this.fishArray.splice(0)[0]);
+	target.fishArray = target.fishArray.filter(function(key){return key !== undefined;});
+	target.fishArray.forEach(function(key){
+		key.targetX = target.x;
+		key.targetY = target.y;
+		key.getNewContainer(target, true, target.radius);
+	});
+	this.fishArray = [];
 };
