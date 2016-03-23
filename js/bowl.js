@@ -32,3 +32,7 @@ Bowl.prototype.display = function() {
 		radius: this.radius
 	});
 };
+
+Bowl.prototype.isEmpty = function(){
+	return this.fishArray.length === 0;
+};

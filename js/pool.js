@@ -33,7 +33,9 @@ Pool.prototype.init =  function(){
 
 };
 
-
+Pool.prototype.isEmpty = function(){
+	return this.fishArray.length === 0;
+};
 
 Pool.prototype.displayPool = function(){
 	this.canvas.drawRect({

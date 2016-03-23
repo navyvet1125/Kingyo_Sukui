@@ -8,9 +8,10 @@ canvas {
 	margin: auto;
   	position: absolute;
   	top: 0; left: 0; bottom: 0; right: 0;
-	border: 20px outset blue;
+	border: 10px outset blue;
 	width:1005px;
 	height: 600px;
+	background: rgba(200,200,200,.5);
 
 }
 @media screen and (max-width: 980px) {
@@ -24,4 +25,13 @@ canvas {
 		height: 95%;
 	}
 
+}
+
+
+body{
+	background: url('../images/hanawa.jpg');
+	/*background: url('../images/obonPic.jpg');*/
+	/*background: url('../images/duskObon.jpg');*/
+	/*background: url('../images/obonPR1.jpg');*/
+	background-size: cover;
 }

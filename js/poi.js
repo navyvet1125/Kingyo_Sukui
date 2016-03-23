@@ -20,21 +20,25 @@ Poi.prototype.update = function(event){
 };
 
 Poi.prototype.display = function(){
+	var poiObj = this;
 	// Create pattern
 var patt = $('canvas').createPattern({
   // Define width/height of pattern (before repeating)
   width: 5, height: 5,
   source: function(context) {
     // Draw rectangle (which will repeat)
-    $(this).drawRect({
-      //fillStyle: '#bcdeb2',
-      strokeStyle: '#f0f4dc',
-      //strokeWidth: 1,
-      x: 0, y: 0,
-      width: 5, height: 5,
-      fromCenter: false,
-      //cornerRadius: 2
-    });
+    if(!poiObj.isBroken){
+	    $(this).drawRect({
+	      //fillStyle: '#bcdeb2',
+	      strokeStyle: '#f0f4dc',
+	      //strokeWidth: 1,
+	      x: 0, y: 0,
+	      width: (poiObj.poiHealth+3)/3,
+	      height: (poiObj.poiHealth+3)/3,
+	      fromCenter: false,
+	      //cornerRadius: 2
+	    });
+	}
   }
 });
 
@@ -46,6 +50,10 @@ $('canvas').drawArc({
   x: this.x, y: this.y,
   radius: 75
 });
+
+
+
+
 
 var handleX = this.x +(Math.cos(0.7853981634)*75);
 var handleY = this.y +(Math.sin(0.7853981634)*75);
@@ -59,6 +67,11 @@ $('canvas').drawLine({
   x2: handleX2, y2: handleY2,
   });
 };
+
+Poi.prototype.isEmpty = function(){
+	return this.fishArray.length === 0;
+};
+
 
 Poi.prototype.startTimer = function(){
 	var poiObj = this;

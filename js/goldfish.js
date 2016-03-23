@@ -51,7 +51,6 @@ Goldfish.prototype.display =function(){
 	});
 };
 
-
 //Returns the distance between the fish and a coordinate pair using the Pythagorean Theorem.
 Goldfish.prototype.distanceTo = function(objX,objY){
 	return Math.sqrt(Math.pow(this.x-objX,2)+Math.pow(this.y-objY,2));
@@ -87,23 +86,29 @@ obj.timerId = window.setInterval(function(){
 		obj.x = obj.poiX;
 		obj.y = obj.poiY;
 	}
-else if(obj.container === 'bowl') {
-		// obj.x = obj.poiX;
-		// obj.y = obj.poiY;
-	}
 
 //fish speed determines how quickly the interval is called
 },(100/this.speed));	
 };
 
+//Stops  fish logic
+Goldfish.prototype.die = function(){
+	//clears logic timer
+	window.clearInterval(this.timerId);
+};
+
+//Sets fish state to outside of water
 Goldfish.prototype.outOfWater = function (){
 	this.isInWater = false;
 };
+
+//Sets fish state to inside a body of water
 Goldfish.prototype.inWater = function (){
 	this.isInWater = true;
 };
 
 
+//Run this to let the fish know it is in a new container
 Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
 	this.container = container.type;
 	this.targetX = container.x;
@@ -113,10 +118,13 @@ Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
 	if(!hasWater) this.outOfWater();
 	else this.inWater();
 };
+
+//Updates fish on its disance to the poi.
 Goldfish.prototype.poiDistance = function(x, y){
 	this.distanceToPoi = this.distanceTo(x,y);
 };
 
+//Updatess fish on the poi's location.
 Goldfish.prototype.updatePoi = function(x,y){
 	this.poiX = x;
 	this.poiY = y;
