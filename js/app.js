@@ -1,7 +1,7 @@
 var $canvas = $('#gameCanvas');
 //new Pools require a length, width, a number of fish, a color, and the canvas
 //Sawa no Puuru  means "Sawa's Pool" in Japanese
-var sawaNoPuuru = new Pool($canvas,700,800,12,'blue');
+var sawaNoPuuru = new Pool($canvas,700,800,2,'blue');
 //New bowls require a canvas, x, y height, width, and a radius (optional)
 var sawaNoBouru = new Bowl ($canvas,970,400,800,550,260);
 
