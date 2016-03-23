@@ -70,6 +70,7 @@ var obj = this;
 obj.timerId = window.setInterval(function(){
 	//If the fish is in a body of water, then it can move around.
 	if(obj.isInWater){
+
 		//Updates the working theta so that the fish will orbit the target
 		//Updates obj.theta so that the fish appears to be orbiting the target coordinates
 		workingTheta = (workingTheta + 1) % 360;
@@ -82,6 +83,10 @@ obj.timerId = window.setInterval(function(){
 	if(obj.container === 'pool') {
 		obj.distanceToPoi = obj.distanceTo(obj.poiX, obj.poiY);
 	}
+	else if(obj.container === 'poi') {
+		obj.x = obj.poiX;
+		obj.y = obj.poiY;
+	}
 
 //fish speed determines how quickly the interval is called
 },(100/this.speed));	
@@ -90,6 +95,10 @@ obj.timerId = window.setInterval(function(){
 Goldfish.prototype.outOfWater = function (){
 	this.isInWater = false;
 };
+Goldfish.prototype.inWater = function (){
+	this.isInWater = true;
+};
+
 
 Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
 	this.container = container;
@@ -97,7 +106,8 @@ Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
 	this.targetY = container.y;
 	if(radius) this.distanceToTarget = Math.floor(Math.random()*(radius-5)+3);
 	else distanceToTarget = 0;
-	this.IsInWater = !!hasWater;
+	if(!hasWater) this.outOfWater();
+	else this.inWater();
 };
 Goldfish.prototype.poiDistance = function(x, y){
 	this.distanceToPoi = this.distanceTo(x,y);
