@@ -15,8 +15,8 @@ var Poi = function(canvas){
 };
 
 Poi.prototype.update = function(event){
-this.x = event.pageX;
-this.y = event.pageY;
+	this.x = event.pageX;
+	this.y = event.pageY;
 };
 
 Poi.prototype.display = function(){
@@ -64,6 +64,7 @@ Poi.prototype.startTimer = function(){
 	var poiObj = this;
 	this.isUnderWater = true;
 	if (!poiObj.isBroken)poiObj.poiHealth--;
+	if (poiObj.poiHealth<=0)poiObj.breakPoi();
 	$('.timer').text('The poi is under water!');
 	this.healthTimer = window.setInterval(function(){
 		$('.timer').text('The poi is still under water!');
@@ -86,42 +87,52 @@ Poi.prototype.breakPoi = function (){
 };
 
 Poi.prototype.takeFish = function(previousArray, index){
+	var tempKey;
 	if(this.fishArray.length<3) {
+		this.fishArray = this.fishArray.filter(function(key){return key !== undefined;});
 		this.fishArray.push(previousArray.splice(index, 1)[0]);
 		try {
-			this.fishArray[this.fishArray.length-1].getNewContainer(this, false, this.radius);
+			var tempobj = this;
+			this.fishArray.forEach(function(key){
+				tempKey = key;
+				key.getNewContainer(tempobj,false, tempobj.radius);
+			});
+			// this.fishArray[this.fishArray.length-1].getNewContainer(this, false, this.radius);
 			
 		}
 		 catch(e){
-		 	$('.timer').text(e);
+		 	console.log(e);
+		 	console.log(this.fishArray);
 		 }
 		// Fish weight slowly destroys the poi.
 		this.poiHealth-=2;
 	}
-	this.fishArray = this.fishArray.filter(function(key){return key !== undefined;});
+	
 
 };
 
 
 Poi.prototype.takeCloseFish = function(poolObj){
-	var poiObj = this;
+	//Setting poiObj to this allows use of the Poi object within callbacks
+	var poiObj = this; 
+	//Filter out all fish farther than the radius of the poi.
 	var fishToTake = poolObj.fishArray.filter(function(key){
-		return key.distanceToPoi<75;
+		return key.distanceToPoi<=75;
 	});
-
 	fishToTake.forEach(function(key){
-		var tempIndex = key.index;
+		var tempIndex = poolObj.fishArray.indexOf(key);
 		poiObj.takeFish(poolObj.fishArray, tempIndex);
 	});
+
 };
 
-Poi.prototype.dropMyFish = function (target){
-	target.fishArray.push(this.fishArray.splice(0)[0]);
-	target.fishArray = target.fishArray.filter(function(key){return key !== undefined;});
-	target.fishArray.forEach(function(key){
+Poi.prototype.dropMyFish = function (target, distance){
+	this.fishArray.splice(0).forEach(function(key){
+		target.fishArray.push(key);
 		key.targetX = target.x;
 		key.targetY = target.y;
-		key.getNewContainer(target, true, target.radius);
+		key.getNewContainer(target, true, distance);
 	});
+	//target.fishArray = target.fishArray.filter(function(key){return key !== undefined;});
 	this.fishArray = [];
 };

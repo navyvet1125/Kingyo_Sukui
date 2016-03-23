@@ -108,8 +108,8 @@ Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
 	this.container = container.type;
 	this.targetX = container.x;
 	this.targetY = container.y;
-	if(radius) this.distanceToTarget = Math.floor(Math.random()*(radius-20)+3);
-	else distanceToTarget = 0;
+	this.distanceToTarget = radius;
+	
 	if(!hasWater) this.outOfWater();
 	else this.inWater();
 };

@@ -1,64 +1,67 @@
 var $canvas = $('#gameCanvas');
 //new Pools require a length, width, a number of fish, a color, and the canvas
-//Sawa no Puuru  means "Sawa's Pool" in Japanese
-var sawaNoPuuru = new Pool($canvas,700,800,12,'blue');
+
+var myPool = new Pool($canvas,700,800,4,'blue');
 //New bowls require a canvas, x, y height, width, and a radius (optional)
-var sawaNoBouru = new Bowl ($canvas,970,400,800,550,260);
+var myBowl = new Bowl ($canvas,970,400,800,550,260);
 
-var sawaNoPoi = new Poi($canvas);
+var myPoi = new Poi($canvas);
 $canvas.on('mousemove', function(event){
-	sawaNoPoi.update(event);
+	myPoi.update(event);
 
-	if(sawaNoPuuru.fishArray.length > 0) sawaNoPuuru.fishArray.forEach(function(key){
-		key.updatePoi(sawaNoPoi.x, sawaNoPoi.y);
-	});
-	if(sawaNoPoi.x > sawaNoPuuru.width && sawaNoPoi.isUnderWater) sawaNoPoi.stopTimer();
+	if(myPool.fishArray.length > 0) {
+		myPool.fishArray.forEach(function(key){
+			key.updatePoi(myPoi.x, myPoi.y);
+		});
+	}
+	if(myPoi.x > myPool.width && myPoi.isUnderWater) myPoi.stopTimer();
 });
 
 $canvas.on('mousedown', function(){
-	if(sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken &&sawaNoPoi.fishArray.length < 1)	sawaNoPoi.startTimer();
-	else console.log((sawaNoPoi.x < sawaNoPuuru.width && !sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken));
-	if(sawaNoPoi.x < sawaNoPuuru.width && sawaNoPoi.fishArray.length >=1) $('.timer').text('Place your fish in the bowl!');
-	
+	if(myPoi.x < myPool.width && !myPoi.isUnderWater && !myPoi.isBroken && (myPoi.fishArray.length ===0))	myPoi.startTimer();
+	if(myPoi.x < myPool.width && myPoi.fishArray.length >=1) $('.timer').text('Place your fish in the bowl!');
+
+
 	//get distance between the poi and the bowl
-	var poiDistanceToBowl = Math.floor(Math.sqrt(Math.pow(sawaNoPoi.x-sawaNoBouru.x, 2)+Math.pow(sawaNoPoi.y-sawaNoBouru.y, 2)));
+	var poiDistanceToBowl = Math.floor(Math.sqrt(Math.pow(myPoi.x-myBowl.x, 2)+Math.pow(myPoi.y-myBowl.y, 2)));
 	//if the poi is over the bowl
-	if(poiDistanceToBowl < 250 && sawaNoPoi.fishArray.length >= 1){
-		sawaNoPoi.dropMyFish(sawaNoBouru);
+	if(poiDistanceToBowl < 250 && myPoi.fishArray.length >= 1){
+		myPoi.dropMyFish(myBowl, poiDistanceToBowl);
 	}
 
 });
 $canvas.on('mouseup', function(){
-	if(sawaNoPoi.x < sawaNoPuuru.width && sawaNoPoi.isUnderWater && !sawaNoPoi.isBroken) sawaNoPoi.takeCloseFish(sawaNoPuuru);
-	if(sawaNoPoi.isUnderWater)sawaNoPoi.stopTimer();
+	if(myPoi.x < myPool.width && myPoi.isUnderWater && !myPoi.isBroken) myPoi.takeCloseFish(myPool);
+	if(myPoi.isUnderWater)myPoi.stopTimer();
 
 });
-//$canvas.mousemove(event, sawaNoPoi);
+//$canvas.mousemove(event, myPoi);
 // $canvas.on('mousemove', function(event){});
 
 
-var timer2Id = window.setInterval(function(){
+var timerId = window.setInterval(function(){
 
 		try {
-			sawaNoPuuru.displayPool();
-			sawaNoBouru.display();
-			if(sawaNoPuuru.fishArray.length > 0) sawaNoPuuru.fishArray.forEach(function(key){key.display();});
-			sawaNoPoi.display();
-			if(sawaNoPoi.fishArray.length >0) {
-				sawaNoPoi.fishArray.forEach(function(key){
+			myPool.displayPool();
+			myBowl.display();
+			if(myPool.fishArray.length > 0) myPool.fishArray.forEach(function(key){key.display();});
+			myPoi.display();
+			if(myPoi.fishArray.length >0) {
+				myPoi.fishArray = myPoi.fishArray.filter(function(key){return key !== undefined;});
+				myPoi.fishArray.forEach(function(key){
 					key.display();
-					key.updatePoi(sawaNoPoi.x, sawaNoPoi.y);
+					key.updatePoi(myPoi.x, myPoi.y);
 				});
 			}
-			if(sawaNoBouru.fishArray.length >0) {
-				sawaNoBouru.fishArray.forEach(function(key){
+			if(myBowl.fishArray.length >0) {
+				myBowl.fishArray.forEach(function(key){
 					key.display();
-					key.updatePoi(sawaNoPoi.x, sawaNoPoi.y);
+					key.updatePoi(myPoi.x, myPoi.y);
 				});
 			}
 		}
 		catch(e){
-			$('.timer').text(e);
+			console.log(e);
 		}
 
 },41);

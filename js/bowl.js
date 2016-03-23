@@ -11,10 +11,6 @@ var Bowl = function(canvas, x, y, height, width, radius){
 	//this.init();
 };
 
-Bowl.prototype.init = function(){
-	//console.log(this);
-};
-
 Bowl.prototype.display = function() {
 	// Draw the table the bowl rests on.
 	this.canvas.drawRect({
