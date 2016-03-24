@@ -74,7 +74,7 @@ var gameStart = function (){
 					if(myBowl.getFishNum()===myPool.numberOfFish){
 						gameWin = true;
 						stopGame();
-						console.log('You Win!');
+						alert('You Win!');
 					}
 				}
 				myPoi.display();
