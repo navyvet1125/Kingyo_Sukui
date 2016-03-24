@@ -1,28 +1,30 @@
-// Required arguments are canvas, x, y, angle, targetX, targetY, speed, if it is in water, what container is it in, and it's number.
-var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater, container, index){
+// Required arguments are canvas, x, y, angle, targetX, targetY, speed, if it is in water, and what container is it in.
+var Goldfish = function(canvas, x, y, theta, targetX, targetY, speed, isInWater, container){
+	//fish display variables
 	this.canvas = canvas;
+	this.length = 25;
+	this.width = 50;
+	this.tailLength = this.width * 0.71;
+	// Fish logic variables
 	this.x =x;
 	this.y =y;
-	this.length = 70;
-	this.width = 35;
 	this.targetX = targetX;
 	this.targetY = targetY;
 	this.speed = speed;
 	this.theta = theta;
-	this.isNormal = true;
-	// whether or not the fish is in water
-	this.isInWater = isInWater;
 	//calculate fish distance to target
 	this.distanceToTarget = this.distanceTo(this.targetX, this.targetY);
 	this.container= container;
 	this.distanceToPoi = 0;
 	this.poiX = 0;
 	this.poiY = 0;
-	this.index = index;
+	// whether or not the fish is in water
+	this.isInWater = isInWater;
+	console.log('Fish created!');
 	//Sarts the fish logic
 	this.init(); 
 	
-	// this.isLively = (Math.floor(Math.random()*2)===0);
+
 };
 
 //Display the goldfish in the canvas
@@ -35,7 +37,7 @@ Goldfish.prototype.display =function(){
 	  strokeStyle: '#f38630',
 	  strokeWidth: 1,
 	  x: obj.x, y: obj.y,
-	  width: 70, height: 35,
+	  width: obj.width, height: obj.length,
 	  rotate:direction
 	});
 	// Draw the tail of the fish
@@ -43,9 +45,9 @@ Goldfish.prototype.display =function(){
 	  fillStyle: '#f38630',
 	  strokeStyle:'#fa6900',
 	  strokeWidth: 1,
-	  x: obj.x + (Math.cos(direction*Math.PI/180))*50,
-	  y: obj.y + (Math.sin(direction*Math.PI/180))*50,
-	  radius: 25,
+	  x: obj.x + (Math.cos(direction*Math.PI/180))*obj.tailLength,
+	  y: obj.y + (Math.sin(direction*Math.PI/180))*obj.tailLength,
+	  radius: obj.tailLength/2,
 	  sides: 3,
 	  rotate: direction+30
 	});
@@ -79,9 +81,11 @@ obj.timerId = window.setInterval(function(){
 		obj.x = obj.targetX + (Math.cos(workingTheta*Math.PI/180))*obj.distanceToTarget;
 		obj.y = obj.targetY + (Math.sin(workingTheta*Math.PI/180))*obj.distanceToTarget;
 	}
+	//The fish will know where the poi is while they are in the pool
 	if(obj.container === 'pool') {
 		obj.distanceToPoi = obj.distanceTo(obj.poiX, obj.poiY);
 	}
+	//If the fish is in the poi, then its position should equal the poi's position
 	else if(obj.container === 'poi') {
 		obj.x = obj.poiX;
 		obj.y = obj.poiY;
@@ -114,7 +118,10 @@ Goldfish.prototype.getNewContainer = function (container, hasWater, radius){
 	this.targetX = container.x;
 	this.targetY = container.y;
 	this.distanceToTarget = radius;
-	
+	//Restart fish logic.
+	this.die();
+	this.init();
+	//Update fish state of being in or out of the water
 	if(!hasWater) this.outOfWater();
 	else this.inWater();
 };

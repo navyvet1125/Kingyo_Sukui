@@ -1,14 +1,12 @@
 var gameWon;
 $('.start-button').click(function(){
 	console.log('Game Start');
-	$('.start-button').toggle();
+	$('.start-button').toggleClass('hide-it');
 	$canvas.toggleClass('hide-cursor');	
 	gameWon = gameStart();
 	
 });
 var $canvas = $('#gameCanvas');
-
-
 
 var gameStart = function (){
 	var gameWin = false;
@@ -16,7 +14,7 @@ var gameStart = function (){
 
 	var myPool = new Pool($canvas,620,600,10);
 	//New bowls require a canvas, x, y height, width, and a radius (optional)
-	var myBowl = new Bowl ($canvas,800,300,600,410,200);
+	var myBowl = new Bowl ($canvas,810,300,600,400,185);
 
 	var myPoi = new Poi($canvas);
 	$canvas.on('mousemove', function(event){
@@ -38,7 +36,7 @@ var gameStart = function (){
 		//get distance between the poi and the bowl
 		var poiDistanceToBowl = Math.floor(Math.sqrt(Math.pow(myPoi.x-myBowl.x, 2)+Math.pow(myPoi.y-myBowl.y, 2)));
 		//if the poi is over the bowl
-		if(poiDistanceToBowl < 250 && myPoi.fishArray.length >= 1){
+		if(poiDistanceToBowl < (myBowl.radius-5) && !myPoi.isEmpty()){
 			myPoi.dropMyFish(myBowl, poiDistanceToBowl);
 		}
 
@@ -50,11 +48,12 @@ var gameStart = function (){
 	});
 
 	var stopGame = function(){
+		myPoi.poiHealth = 30;
 		if(!myPool.isEmpty()) myPool.fishArray.forEach(function(key){key.die();});	
 		if(!myPoi.isEmpty()) myPoi.fishArray.forEach(function(key){key.die();});	
 		if(!myBowl.isEmpty()) myBowl.fishArray.forEach(function(key){key.die();});
 		window.clearInterval(displayTimer);
-		$('.start-button').toggle();
+		$('.start-button').toggleClass('hide-it');
 		$canvas.toggleClass('hide-cursor');
 	};
 

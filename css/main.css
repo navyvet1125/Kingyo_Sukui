@@ -1,44 +1,241 @@
 body{
-
+	font-family: Arial, sans-serif;
 }
 .hide-cursor{
 	 cursor: none;
 }
-
+.screen-in-portrait{
+	display: none;
+}
 .screen-too-small {
 	display: none;
 }
+
+.hide-it {
+	visibility: hidden;
+}
+
+
+
 .canvasHolder{
-	margin: auto;
-  	position: relative;
-  	/*top: 0; left: 0; bottom: 0; right: 0;*/
-	border: 10px outset blue;
-	width:1005px;
+	position: relative;
+	top:7em;
+  	border: 10px outset blue;
+	width:1000px;
 	height: 600px;
 	background: rgb(200,200,200);
 	background: rgba(200,200,200,0.5);
-	
-
+	margin: 0 auto;
 }
 
 .start-button{
-	width: 25%;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	width: 3em;
+	height: 1em;
 	margin: 15% auto;
 	padding: 5%;
 	background: gray;
 	text-align: center;
 	font-size: 3em;
-
 }
 
 header {
-	margin: 10vh 10vw;
+	color: white;
+	margin: 3em auto;
 	width: 90vw;
-	height: 85vh;
+	height: 90vh;
 	background: '#cff';
-}
-
-.gameSection{
 	background: url('../images/hanawa.jpg');
 	background-size: cover;
+}
+
+@media screen and (max-width: 1150px){
+	.screen-in-portrait{
+		display: none;
+	}
+	.screen-too-small {
+		display: none;
+	}
+	.canvasHolder{
+		position: relative;
+		top:7em;
+	  	border: 10px outset blue;
+		width:1000px;
+		height: 600px;
+		background: rgb(200,200,200);
+		background: rgba(200,200,200,0.5);
+		margin: 0 auto;
+	}
+
+	.start-button{
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		width: 3em;
+		height: 1em;
+		margin: 35% auto;
+		padding: 5%;
+		background: gray;
+		text-align: center;
+		font-size: 3em;
+	}
+
+	header {
+		color: white;
+		margin: 3em auto;
+		width: 1020px;
+		height: 90vh;
+		background: '#cff';
+		background: url('../images/hanawa.jpg');
+		background-size: cover;
+	}	
+}
+
+
+
+
+
+/*Ipad in Landscape mode*/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:landscape) {
+	 .screen-in-portrait{
+		display: none;
+	}
+	.screen-too-small {
+		display: none;
+	}
+	.canvasHolder{
+	  	border: 10px outset blue;
+		width:1000px;
+		height: 600px;
+		background: rgb(200,200,200);
+		background: rgba(200,200,200,0.5);
+		margin: 0 auto;
+	}
+
+	.start-button{
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		width: 3em;
+		height: 1em;
+		margin: 15% auto;
+		padding: 5%;
+		background: gray;
+		text-align: center;
+		font-size: 3em;
+	}
+
+	header {
+		color: white;
+		margin: 4em auto;
+		width: 1010px;
+		height: 610px;
+		background: '#cff';
+		background: url('../images/hanawa.jpg');
+		background-size: cover;
+	}
+
+}
+
+/*For all other handhelds in Landscape mode*/
+@media screen and (max-width: 1000px), handheld and (orientation: landscape) {
+	header {
+		width: 100%;
+	}
+	.start-button{
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		width: 25%;
+		margin: 15% auto;
+		padding: 5%;
+		background: gray;
+		text-align: center;
+		font-size: 3em;
+
+	}
+	.canvasHolder{
+		
+	  	position: absolute;
+	  	top: 0; left: 0; bottom: 0; right: 0;
+		border: 10px outset blue;
+		width:1000px;
+		height: 600px;
+		background: rgb(200,200,200);
+		background: rgba(200,200,200,0.5);
+		margin: 0 auto;
+		
+
+	}
+
+	.start-button{
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		width: 5em;
+		height: 3em;
+		background: gray;
+		text-align: center;
+		font-size: 3em;
+
+	}
+
+	header {
+		color: white;
+		width: 1010px;
+		height:610px;
+		background: '#cff';
+		background: url('../images/hanawa.jpg');
+		background-size: cover;
+		margin: 0 auto;
+		
+	}
+}
+
+/*For anything in Portrait Mode*/
+@media all and (orientation: portrait) {
+	.canvasHolder{
+		display:none;
+	}
+	.screen-in-portrait {
+		text-align: center;
+		border-radius: 10px;
+		margin: 0 auto;
+		background: #ccc;
+		height: 50%;
+		width: 50%;
+		display: block;
+		font-size: 200%;
+	}
+	header{
+		color:black;
+		background: white;
+	}
+	.start-button{
+		display:none;
+	}	
+}
+
+/*For all computer screens less than 800 pixels wide*/
+@media screen and (max-width: 768px){
+	.canvasHolder{
+		display:none;
+	}
+	.screen-too-small {
+		text-align: center;
+		border-radius: 10px;
+		margin: 0 auto;
+		background: #ccc;
+		height: 50%;
+		width: 50%;
+		display: block;
+		font-size: 200%;
+	}
+	.screen-in-portrait {
+		display: none;
+	}
+	header{
+		color:black;
+		background: white;
+	}
+	.start-button{
+		display:none;
+	}
 }

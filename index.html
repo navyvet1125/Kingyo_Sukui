@@ -2,27 +2,30 @@
 <html>
 <head>
 	<meta charset ="utf-8">
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<!-- <meta name="viewport" content="width=1000"> -->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<title>Kingyo Sukui</title>
-	<!-- <script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script> -->
-	<script type="text/javascript" src ="js/jquery-1.12.2.min.js"></script>
+	<script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+	<!-- <script type="text/javascript" src ="js/jquery-1.12.2.min.js"></script> -->
 	<script type="text/javascript" src ="js/jcanvas.min.js"></script>
 </head>
 <body>
 	<header>
-		<h1>Kingyo Sukui</h1>
-	</header>
-	<section class = "gameSection">
-		<div class ="canvasHolder tester1 tester2">
-			<canvas id="gameCanvas" width="1005" height="600"></canvas>
+		
+		<div class ="canvasHolder">
+			<canvas id="gameCanvas" width="1000" height="600"></canvas>
 		</div>
 		<div class ="start-button">Start</div>
 		<div class = "screen-too-small">
 			<h1>Screen is too small!</h1>
-			<p> Screen needs to have a minimal screen width of 1024
+			<p> Screen needs to have a minimal screen width of 1000.
 		</div>
-	</section>
+
+		<div class = "screen-in-portrait">
+			<h1>Screen in Portrait</h1>
+			<p> Screen needs be in Landscape mode.</p>
+		</div>
+	</header>
 	<script type="text/javascript" src ="js/goldfish.js"></script>
 	<script type="text/javascript" src ="js/pool.js"></script>
 	<script type="text/javascript" src ="js/bowl.js"></script>

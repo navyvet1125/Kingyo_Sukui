@@ -12,6 +12,7 @@ var Poi = function(canvas){
 	this.isBroken = false;
 	this.radius = 75;
 	this.container ='poi';
+	console.log('Poi created!');	
 };
 
 Poi.prototype.update = function(event){
@@ -33,8 +34,8 @@ var patt = $('canvas').createPattern({
 	      strokeStyle: '#f0f4dc',
 	      //strokeWidth: 1,
 	      x: 0, y: 0,
-	      width: (poiObj.poiHealth+3)/3,
-	      height: (poiObj.poiHealth+3)/3,
+	      width: (poiObj.poiHealth+3)/5,
+	      height: (poiObj.poiHealth+3)/5,
 	      fromCenter: false,
 	      //cornerRadius: 2
 	    });
@@ -68,11 +69,13 @@ $('canvas').drawLine({
   });
 };
 
+//Returns whether the poi is devoid of fish or not
 Poi.prototype.isEmpty = function(){
 	return this.fishArray.length === 0;
 };
 
 
+//Starts the timer that indicates health loss
 Poi.prototype.startTimer = function(){
 	var poiObj = this;
 	this.isUnderWater = true;
@@ -84,12 +87,13 @@ Poi.prototype.startTimer = function(){
 	},1000);
 };
 
+//stops the timer that deletes health
 Poi.prototype.stopTimer = function() {
 	window.clearInterval(this.healthTimer);
 	this.isUnderWater = false;
 };
 
-
+//run when poi health reaches or passes 0.
 Poi.prototype.breakPoi = function (){
 	window.clearInterval(this.healthTimer);
 	this.isBroken = true;
@@ -107,8 +111,7 @@ Poi.prototype.takeFish = function(previousArray, index){
 				tempKey = key;
 				key.getNewContainer(tempobj,false, tempobj.radius);
 			});
-			// this.fishArray[this.fishArray.length-1].getNewContainer(this, false, this.radius);
-			
+		
 		}
 		 catch(e){
 		 	console.log(e);
@@ -143,6 +146,5 @@ Poi.prototype.dropMyFish = function (target, distance){
 		key.targetY = target.y;
 		key.getNewContainer(target, true, distance);
 	});
-	//target.fishArray = target.fishArray.filter(function(key){return key !== undefined;});
 	this.fishArray = [];
 };
