@@ -30,7 +30,7 @@ Goldfish.prototype.display =function(){
 	var obj = this;
 	var direction = obj.theta;
 	//Draws the body of the fish
-	$canvas.drawEllipse({
+	obj.canvas.drawEllipse({
 	  fillStyle: '#fa6900',
 	  strokeStyle: '#f38630',
 	  strokeWidth: 1,
@@ -39,7 +39,7 @@ Goldfish.prototype.display =function(){
 	  rotate:direction
 	});
 	// Draw the tail of the fish
-	$canvas.drawPolygon({
+	obj.canvas.drawPolygon({
 	  fillStyle: '#f38630',
 	  strokeStyle:'#fa6900',
 	  strokeWidth: 1,

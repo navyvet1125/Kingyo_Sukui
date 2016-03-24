@@ -1,9 +1,5 @@
 body{
-	background: url('../images/hanawa.jpg');
-	/*background: url('../images/obonPic.jpg');*/
-	/*background: url('../images/duskObon.jpg');*/
-	/*background: url('../images/obonPR1.jpg');*/
-	background-size: cover;
+
 }
 .hide-cursor{
 	 cursor: none;
@@ -14,14 +10,14 @@ body{
 }
 .canvasHolder{
 	margin: auto;
-  	position: absolute;
-  	top: 0; left: 0; bottom: 0; right: 0;
+  	position: relative;
+  	/*top: 0; left: 0; bottom: 0; right: 0;*/
 	border: 10px outset blue;
 	width:1005px;
 	height: 600px;
 	background: rgb(200,200,200);
 	background: rgba(200,200,200,0.5);
-	z-index: -1;
+	
 
 }
 
@@ -34,28 +30,15 @@ body{
 	font-size: 3em;
 
 }
-/*@media screen and (max-width: 1023px) {
-	.canvasHolder{
-		display:none;
-	}
-	.screen-too-small {
-		width: 100%;
-		height:100%;
-		padding: 30%;
-		background: white;
-		text-align: center;
-		font-size: 3em;
-		color: gray;
-		display: block;
-		margin: 0 auto;
-		width: 95%;
-		height: 95%;
-	}
-	body{
-		background: white;
-	}
-	button {
-		display: none;
-	}
+
+header {
+	margin: 10vh 10vw;
+	width: 90vw;
+	height: 85vh;
+	background: '#cff';
 }
-*/
+
+.gameSection{
+	background: url('../images/hanawa.jpg');
+	background-size: cover;
+}
