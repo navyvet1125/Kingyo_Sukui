@@ -5,7 +5,6 @@ var Pool = function(canvas, height, width, numberOfFish){
 	this.height = height;
 	this.width = width;
 	this.numberOfFish = numberOfFish;
-	this.color = color;
 	this.fishArray = [];
 	this.canvas = canvas;
 	this.type = 'pool';

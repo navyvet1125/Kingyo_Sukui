@@ -1,6 +1,14 @@
-canvas {
+body{
+	background: url('../images/hanawa.jpg');
+	/*background: url('../images/obonPic.jpg');*/
+	/*background: url('../images/duskObon.jpg');*/
+	/*background: url('../images/obonPR1.jpg');*/
+	background-size: cover;
+}
+.hide-cursor{
 	 cursor: none;
 }
+
 .screen-too-small {
 	display: none;
 }
@@ -11,27 +19,46 @@ canvas {
 	border: 10px outset blue;
 	width:1005px;
 	height: 600px;
-	background: rgba(200,200,200,.5);
+	background: rgb(200,200,200);
+	background: rgba(200,200,200,0.5);
+	z-index: -1;
 
 }
-@media screen and (max-width: 980px) {
+
+.start-button{
+	width: 25%;
+	margin: 15% auto;
+	padding: 5%;
+	background: gray;
+	text-align: center;
+	font-size: 3em;
+
+}
+
+
+
+@media screen and (max-width: 1023px) {
 	.canvasHolder{
 		display:none;
 	}
 	.screen-too-small {
+		width: 100%;
+		height:100%;
+		padding: 30%;
+		background: white;
+		text-align: center;
+		font-size: 3em;
+		color: gray;
 		display: block;
 		margin: 0 auto;
 		width: 95%;
 		height: 95%;
 	}
-
+	body{
+		background: white;
+	}
+	button {
+		display: none;
+	}
 }
 
-
-body{
-	background: url('../images/hanawa.jpg');
-	/*background: url('../images/obonPic.jpg');*/
-	/*background: url('../images/duskObon.jpg');*/
-	/*background: url('../images/obonPR1.jpg');*/
-	background-size: cover;
-}
