@@ -13,7 +13,7 @@ var $canvas = $('#gameCanvas');
 var gameStart = function (){
 
 	//new Pools require a length, width, a number of fish, a color, and the canvas
-	var myPool = new Pool($canvas,620,600,16);
+	var myPool = new Pool($canvas,620,600,10);
 	//New bowls require a canvas, x, y height, width, and a radius (optional)
 	var myBowl = new Bowl ($canvas,810,300,600,400,185);
 	//New pois require a canvas
@@ -67,6 +67,7 @@ var gameStart = function (){
 		if(!myBowl.isEmpty()) myBowl.fishArray.forEach(function(key){key.die();});
 		//Stop the display timer
 		window.clearInterval(displayTimer);
+		delete myPoi.poiHealth;
 		//Show the start button
 		$('.start-button').toggleClass('hide-it');
 		//unhide cursor

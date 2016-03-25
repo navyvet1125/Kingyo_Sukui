@@ -167,7 +167,7 @@ Poi.prototype.takeFish = function(previousArray, index){
 		 	console.log(this.fishArray);
 		 }
 		// Fish weight slowly destroys the poi.
-		this.poiHealth-=1;
+		this.poiHealth-=2;
 	}
 };
 
