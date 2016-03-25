@@ -1,12 +1,15 @@
 body{
 	font-family: Arial, sans-serif;
 }
+
 .hide-cursor{
 	 cursor: none;
 }
+
 .screen-in-portrait{
 	display: none;
 }
+
 .screen-too-small {
 	display: none;
 }
@@ -14,8 +17,6 @@ body{
 .hide-it {
 	visibility: hidden;
 }
-
-
 
 .canvasHolder{
 	position: relative;

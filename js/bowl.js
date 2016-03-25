@@ -8,7 +8,7 @@ var Bowl = function(canvas, x, y, height, width, radius){
 	this.radius = radius;
 	this.fishArray = [];
 	this.type = 'bowl';
-	//this.init();
+	console.log('Bowl created!');
 };
 
 Bowl.prototype.display = function() {
@@ -31,6 +31,7 @@ Bowl.prototype.display = function() {
 		y: this.y,
 		radius: this.radius
 	});
+	//Draw the number of fish in the bowl
 	this.canvas.drawText({
 	  fillStyle: '#a7dbd8',
 	  strokeStyle: '#69d2e7',
@@ -41,11 +42,11 @@ Bowl.prototype.display = function() {
 	  text: 'Fish collected: '+this.getFishNum()
 	});
 };
-
+//Check if the bowl is empty
 Bowl.prototype.isEmpty = function(){
 	return this.fishArray.length === 0;
 };
-
+//Get the number of fish in the bowl
 Bowl.prototype.getFishNum= function(){
 	return this.fishArray.length;
 };
