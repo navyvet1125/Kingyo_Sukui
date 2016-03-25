@@ -31,6 +31,15 @@ Bowl.prototype.display = function() {
 		y: this.y,
 		radius: this.radius
 	});
+	this.canvas.drawText({
+	  fillStyle: '#a7dbd8',
+	  strokeStyle: '#69d2e7',
+	  strokeWidth: 2,
+	  x: 800, y: 70,
+	  fontSize: 48,
+	  fontFamily: 'Arial, sans-serif',
+	  text: 'Fish collected: '+this.getFishNum()
+	});
 };
 
 Bowl.prototype.isEmpty = function(){
