@@ -5,27 +5,28 @@
 	<meta name="viewport" content="width=1000">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<title>Kingyo Sukui</title>
-	<script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
-	<!-- <script type="text/javascript" src ="js/jquery-1.12.2.min.js"></script> -->
+	<script type="text/javascript" src ="js/jquery-1.12.2.min.js"></script>
 	<script type="text/javascript" src ="js/jcanvas.min.js"></script>
 </head>
 <body>
 	<header>
-		
+		<!-- wrapper for moving the canvas around -->
 		<div class ="canvasHolder">
 			<canvas id="gameCanvas" width="1000" height="600"></canvas>
 		</div>
 		<div class ="start-button">Start</div>
+		<!-- Div for handling desktops that are too small -->
 		<div class = "screen-too-small">
 			<h1>Screen is too small!</h1>
 			<p> Screen needs to have a minimal screen width of 1000.
 		</div>
-
+		<!-- Div for handling handhelds in portrait mode -->
 		<div class = "screen-in-portrait">
 			<h1>Screen in Portrait</h1>
 			<p> Screen needs be in Landscape mode.</p>
 		</div>
 	</header>
+	<!-- Load up the JavaScript -->
 	<script type="text/javascript" src ="js/goldfish.js"></script>
 	<script type="text/javascript" src ="js/pool.js"></script>
 	<script type="text/javascript" src ="js/bowl.js"></script>
