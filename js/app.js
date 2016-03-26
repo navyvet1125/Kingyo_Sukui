@@ -3,10 +3,10 @@ $('.start-button').click(function(){
 	//Hide the start button
 	$('.start-button').toggleClass('hide-it');
 	//hide the cursor when over the canvas
-	$canvas.toggleClass('hide-cursor');	
+	$canvas.toggleClass('hide-cursor');
 	//start the game function
 	gameStart();
-	
+
 });
 var $canvas = $('#gameCanvas');
 
@@ -62,12 +62,11 @@ var gameStart = function (){
 		//fix the Poi health.  Used to prevent ghost poi errors.
 		myPoi.poiHealth = 30;
 		//Search for and stop all fish logics to help keep memory clean.
-		if(!myPool.isEmpty()) myPool.fishArray.forEach(function(key){key.die();});	
-		if(!myPoi.isEmpty()) myPoi.fishArray.forEach(function(key){key.die();});	
+		if(!myPool.isEmpty()) myPool.fishArray.forEach(function(key){key.die();});
+		if(!myPoi.isEmpty()) myPoi.fishArray.forEach(function(key){key.die();});
 		if(!myBowl.isEmpty()) myBowl.fishArray.forEach(function(key){key.die();});
 		//Stop the display timer
 		window.clearInterval(displayTimer);
-		delete myPoi.poiHealth;
 		//Show the start button
 		$('.start-button').toggleClass('hide-it');
 		//unhide cursor
@@ -78,48 +77,48 @@ var gameStart = function (){
 	var displayTimer = window.setInterval(function(){
 			//Check to see if the poi is broken first.
 			//If the poi is broken, then end the game with a loss
+
+      // Attempt to display all objects
+      try {
+        //Draw the pool.
+        myPool.displayPool();
+        //Draw the bowl
+        myBowl.display();
+
+        //Draw the fish in the pool if there are any
+        if(!myPool.isEmpty()){
+          myPool.fishArray.forEach(function(key){key.display();});
+        } else {
+          //If the pool is empty then end the game with a win.
+          if(myBowl.getFishNum()===myPool.numberOfFish){
+            stopGame();
+            alert('You Win!');
+            console.log('Good job!  Let\'s play again!');
+          }
+        }
+        //Show the poi
+        myPoi.display();
+        //Render all fish in the poi
+        if(!myPoi.isEmpty()) {
+          //Filter out undefined objects
+          myPoi.fishArray = myPoi.fishArray.filter(function(key){return key !== undefined;});
+          //update poi location
+          myPoi.fishArray.forEach(function(key){
+            //display the fish in the poi
+            key.display();
+            //update fish in the poi of the poi's position
+            key.updatePoi(myPoi.x, myPoi.y);
+          });
+        }
+        //Display the fish in the bowl if any
+        if(!myBowl.isEmpty()) {
+          myBowl.fishArray.forEach(function(key){ key.display(); });
+        }
 			if(myPoi.isBroken) {
 				stopGame();
 				console.log('Try again!');
 			}
-
-			// Attempt to display all objects
-			try {
-				//Draw the pool.
-				myPool.displayPool();
-				//Draw the bowl
-				myBowl.display();
-
-				//Draw the fish in the pool if there are any
-				if(!myPool.isEmpty()){
-					myPool.fishArray.forEach(function(key){key.display();});
-				} else {
-					//If the pool is empty then end the game with a win.
-					if(myBowl.getFishNum()===myPool.numberOfFish){
-						stopGame();
-						alert('You Win!');
-						console.log('Good job!  Let\'s play again!');
-					}
-				}
-				//Show the poi
-				myPoi.display();
-				//Render all fish in the poi
-				if(!myPoi.isEmpty()) {
-					//Filter out undefined objects
-					myPoi.fishArray = myPoi.fishArray.filter(function(key){return key !== undefined;});
-					//update poi location
-					myPoi.fishArray.forEach(function(key){
-						//display the fish in the poi
-						key.display();
-						//update fish in the poi of the poi's position
-						key.updatePoi(myPoi.x, myPoi.y);
-					});
-				}
-				//Display the fish in the bowl if any
-				if(!myBowl.isEmpty()) {
-					myBowl.fishArray.forEach(function(key){	key.display(); });
-				}
-			}
+      }
 			//If there was an error, log it into the console.
 			catch(e){
 				console.log(e);
