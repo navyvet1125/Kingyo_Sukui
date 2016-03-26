@@ -17,7 +17,7 @@ var Poi = function(canvas){
 	this.isBroken = false;
 	this.radius = 75;
 	this.container ='poi';
-	console.log('Poi created!');	
+	console.log('Poi created!');
 };
 
 // Sets the poi's location to the mouse when the mouse is over the canvas
@@ -133,7 +133,7 @@ Poi.prototype.breakPoi = function (){
 
 Poi.prototype.takeCloseFish = function(poolObj){
 	//Setting poiObj to this allows use of the Poi object within callbacks
-	var poiObj = this; 
+	var poiObj = this;
 	//Filter out all fish farther than the radius of the poi.
 	var fishToTake = poolObj.fishArray.filter(function(key){
 		return key.distanceToPoi<=75;
@@ -160,7 +160,7 @@ Poi.prototype.takeFish = function(previousArray, index){
 				var tempKey = key;
 				key.getNewContainer(tempobj,false, tempobj.radius);
 			});
-		
+
 		}
 		 catch(e){
 		 	console.log(e);

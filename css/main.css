@@ -89,7 +89,7 @@ header {
 		background: '#cff';
 		background: url('../images/hanawa.jpg');
 		background-size: cover;
-	}	
+	}
 }
 
 
@@ -154,7 +154,7 @@ header {
 
 	}
 	.canvasHolder{
-		
+
 	  	position: absolute;
 	  	top: 0; left: 0; bottom: 0; right: 0;
 		border: 10px outset blue;
@@ -163,7 +163,7 @@ header {
 		background: rgb(200,200,200);
 		background: rgba(200,200,200,0.5);
 		margin: 0 auto;
-		
+
 
 	}
 
@@ -186,7 +186,7 @@ header {
 		background: url('../images/hanawa.jpg');
 		background-size: cover;
 		margin: 0 auto;
-		
+
 	}
 }
 
@@ -211,7 +211,7 @@ header {
 	}
 	.start-button{
 		display:none;
-	}	
+	}
 }
 
 /*For all computer screens less than 800 pixels wide*/
