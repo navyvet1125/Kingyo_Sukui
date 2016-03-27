@@ -59,25 +59,27 @@ Poi.prototype.display = function(){
 	});
 
 	//Generates textual poi health data
-	var heatlthText =  'Poi Health: '+ Math.floor((this.poiHealth/this.poiMaxHealth)*100)+'%';
-	var healthNumber = Math.floor((this.poiHealth/this.poiMaxHealth)*100);
+	if(this.poiHealth) {
+		var heatlthText =  'Poi Health: '+ Math.floor((this.poiHealth/this.poiMaxHealth)*100)+'%';
+		var healthNumber = Math.floor((this.poiHealth/this.poiMaxHealth)*100);
 
-	//Create color to represent health from green to yellow to red
-	var healthColor;
-	//Generates a hex color code based on the poi's health
-	if (healthNumber > 50) healthColor = '#' + Math.round(15-(Math.floor(healthNumber/2*0.3)-1)).toString(16) + 'f0';
-	else if (healthNumber <= 50) healthColor  = '#f' + Math.round(healthNumber*0.3).toString(16) + '0';
+		//Create color to represent health from green to yellow to red
+		var healthColor;
+		//Generates a hex color code based on the poi's health
+		if (healthNumber > 50) healthColor = '#' + Math.round(15-(Math.floor(healthNumber/2*0.3)-1)).toString(16) + 'f0';
+		else if (healthNumber <= 50) healthColor  = '#f' + Math.round(healthNumber*0.3).toString(16) + '0';
 
-	//Draw poi health text
-	this.canvas.drawText({
-	  fillStyle: healthColor,
-	  strokeStyle:'#ccc',
-	  strokeWidth: 2,
-	  x: 805, y: 550,
-	  fontSize: 50,
-	  fontFamily: 'Arial, sans-serif',
-	  text: heatlthText
-	});
+		//Draw poi health text
+		this.canvas.drawText({
+		  fillStyle: healthColor,
+		  strokeStyle:'#ccc',
+		  strokeWidth: 2,
+		  x: 805, y: 550,
+		  fontSize: 50,
+		  fontFamily: 'Arial, sans-serif',
+		  text: heatlthText
+		});
+	}
 
 
 
@@ -124,8 +126,6 @@ Poi.prototype.stopTimer = function() {
 //run when poi health reaches or passes 0.
 Poi.prototype.breakPoi = function (){
 	window.clearInterval(this.healthTimer);
-	//Only one alert
-	if(!this.isBroken)alert('The poi broke!');
 	this.isBroken = true;
 };
 
