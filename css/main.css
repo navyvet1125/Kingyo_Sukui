@@ -29,6 +29,12 @@ body{
 	margin: 0 auto;
 }
 
+.computer-mode-title{
+	position: absolute;
+	margin:5vh auto;
+	font-style: italic;
+}
+
 .start-button{
 	position: absolute;
 	top: 0; left: 0; bottom: 0; right: 0;
@@ -89,7 +95,8 @@ header {
 		background: '#cff';
 		background: url('../images/hanawa.jpg');
 		background-size: cover;
-	}	
+	}
+	
 }
 
 
@@ -154,7 +161,6 @@ header {
 
 	}
 	.canvasHolder{
-		
 	  	position: absolute;
 	  	top: 0; left: 0; bottom: 0; right: 0;
 		border: none;
@@ -163,8 +169,6 @@ header {
 		background: rgb(200,200,200);
 		background: rgba(200,200,200,0.5);
 		margin: 0 auto;
-		
-
 	}
 
 	.start-button{
@@ -175,7 +179,6 @@ header {
 		background: gray;
 		text-align: center;
 		font-size: 3em;
-
 	}
 
 	header {
@@ -187,8 +190,11 @@ header {
 		background: url('../images/hanawa.jpg');
 		background-size: cover;
 		margin: 0 auto;
-		
 	}
+	.computer-mode-title{
+		display: none;
+	}	
+
 }
 
 /*For anything in Portrait Mode*/
@@ -212,6 +218,9 @@ header {
 	}
 	.start-button{
 		display:none;
+	}
+	.computer-mode-title{
+		display: none;
 	}	
 }
 
@@ -240,4 +249,8 @@ header {
 	.start-button{
 		display:none;
 	}
+	.computer-mode-title{
+		display: none;
+	}	
+
 }

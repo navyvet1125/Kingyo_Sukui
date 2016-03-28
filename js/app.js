@@ -18,6 +18,8 @@ var gameStart = function (){
 	var myBowl = new Bowl ($canvas,810,300,600,400,185);
 	//New pois require a canvas
 	var myPoi = new Poi($canvas);
+	//New game state
+	var gameOn = true;
 
 	//Even Handlers
 	//Mouse movement
@@ -108,17 +110,23 @@ var gameStart = function (){
 			}
 			//Lose Logic and handler
 			if(myPoi.isBroken) {
-				//End the game and declare a loss
-				stopGame();
-				console.log('Try again!');
-				alert('The poi broke!  Game over!');
+				//End the game and declare a loss if game state is true
+				if(gameOn){
+					stopGame();
+					console.log('Try again!');
+					alert('The poi broke!  Game over!');
+					gameOn = false;
+				}
 			}
 			//Win Logic and handler
 			if(myPool.isEmpty() && myBowl.getFishNum()===myPool.numberOfFish) {
-				//End the game and declare a win
-				stopGame();
-				alert('You got all of the fish!  You Win!');
-				console.log('Good job!  Let\'s play again!');
+				//End the game and declare a win if game state is true
+				if(gameOn){
+					stopGame();
+					alert('You got all of the fish!  You Win!');
+					console.log('Good job!  Let\'s play again!');
+					gameOn = false;					
+				}
 			}
 		}
 		//If there was an error, log it into the console.
