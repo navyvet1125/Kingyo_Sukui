@@ -113,7 +113,7 @@ var gameStart = function (){
 				//End the game and declare a loss if game state is true
 				if(gameOn){
 					stopGame();
-					console.log('Try again!');
+					// console.log('Try again!');
 					alert('The poi broke!  Game over!');
 					gameOn = false;
 				}
@@ -124,7 +124,7 @@ var gameStart = function (){
 				if(gameOn){
 					stopGame();
 					alert('You got all of the fish!  You Win!');
-					console.log('Good job!  Let\'s play again!');
+					// console.log('Good job!  Let\'s play again!');
 					gameOn = false;					
 				}
 			}
